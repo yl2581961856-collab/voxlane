@@ -1,0 +1,19 @@
+[package]
+name = "voice-gateway"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.7", features = ["ws", "macros"] }
+tokio = { version = "1.37", features = ["full"] }
+tower-http = { version = "0.5", features = ["trace"] }
+
+bytes = "1.6"
+uuid = { version = "1.10", features = ["v4"] }
+dotenvy = "0.15"
+
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+thiserror = "1.0"
+anyhow = "1.0"
