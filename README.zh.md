@@ -1,4 +1,4 @@
-# Voice Gateway（中文说明）
+# VoxLane（中文说明）
 
 基于 WebSocket 的实时语音网关（Rust）。生产环境为 Linux（io_uring/Monoio），本地 Windows 仅用于 Debug/Demo，协议与状态机保持一致。
 

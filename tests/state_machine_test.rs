@@ -7,9 +7,9 @@
 //! 4. Cancel propagates to all workers
 
 use bytes::Bytes;
-use voice_gateway::core::commands::{CancelReason, Command};
-use voice_gateway::core::events::{AudioConfig, Event, TurnId};
-use voice_gateway::core::state::{DialogueState, Phase};
+use voxlane::core::commands::{CancelReason, Command};
+use voxlane::core::events::{AudioConfig, Event, TurnId};
+use voxlane::core::state::{DialogueState, Phase};
 
 // ============================================================================
 // Helper functions
@@ -81,7 +81,7 @@ fn client_hello_sets_audio_config() {
     let mut s = new_state();
     let cmds = s.handle(Event::ClientHello {
         audio: AudioConfig {
-            codec: voice_gateway::core::events::AudioCodec::Opus,
+            codec: voxlane::core::events::AudioCodec::Opus,
             sample_rate: 48_000,
             channels: 2,
             frame_ms: 10,
@@ -422,7 +422,7 @@ fn timeout_cancels_active_turn() {
     s.handle(Event::ClientText("hello".to_string()));
 
     let cmds = s.handle(Event::Timeout {
-        kind: voice_gateway::core::events::TimeoutKind::ReadIdle,
+        kind: voxlane::core::events::TimeoutKind::ReadIdle,
     });
 
     assert_eq!(s.phase, Phase::Listening);
@@ -434,7 +434,7 @@ fn timeout_cancels_active_turn() {
 fn timeout_no_active_turn_is_noop() {
     let mut s = new_state();
     let cmds = s.handle(Event::Timeout {
-        kind: voice_gateway::core::events::TimeoutKind::ReadIdle,
+        kind: voxlane::core::events::TimeoutKind::ReadIdle,
     });
     assert!(cmds.is_empty());
 }
